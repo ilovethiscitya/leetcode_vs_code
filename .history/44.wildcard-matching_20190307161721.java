@@ -100,9 +100,5 @@ class Solution {
         }
         return match[0][0];
     }
-    public boolean isMatch(String s, String p) {
-        boolean[][] match = new boolean[s.length() + 1][p.length() + 1];
-        
-    }
 }
 

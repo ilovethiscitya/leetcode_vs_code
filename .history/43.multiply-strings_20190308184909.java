@@ -60,7 +60,7 @@ class Solution {
                 sb.append(p);
             }
         }
-        return sb.length() == 0 ? "0" : sb.toString();
+        return sb.toString();
     }
 }
 

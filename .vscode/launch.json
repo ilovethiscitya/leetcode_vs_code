@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MinimumStringWindow",
+            "request": "launch",
+            "mainClass": "MinimumStringWindow",
+            "projectName": "leetcode_vs_code_d3ba3401"
+        }
+    ]
+}

@@ -50,7 +50,7 @@ class Solution {
                 int p1 = i + j;
                 int p2 = i + j + 1;
                 int s = results[p2] + mul;
-                results[p1] += s / 10;
+                results[p1] = s / 10;
                 results[p2] = s % 10;
             }
         }
@@ -60,7 +60,7 @@ class Solution {
                 sb.append(p);
             }
         }
-        return sb.length() == 0 ? "0" : sb.toString();
+        return sb.toString();
     }
 }
 

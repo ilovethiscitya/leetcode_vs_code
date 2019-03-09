@@ -84,24 +84,6 @@
 class Solution {
     public boolean isMatch(String s, String p) {
         boolean[][] match = new boolean[s.length() + 1][p.length() + 1];
-        match[s.length()][p.length()] = true;
-        int m = s.length();
-        int n = p.length();
-        for(int i = m - 1; i >= 0; i--) {
-            for(int j = n - 1; j >= 0; j--) {
-                if(s.charAt(i) == p.charAt(j) || p.charAt(j) == '?') {
-                    match[i][j] = match[i + 1][j + 1];
-                } else if(p.charAt(j) == '*') {
-                    match[i][j] = match[i + 1][j] || match[i][j + 1];
-                } else {
-                    match[i][j] = false;
-                }
-            }
-        }
-        return match[0][0];
-    }
-    public boolean isMatch(String s, String p) {
-        boolean[][] match = new boolean[s.length() + 1][p.length() + 1];
         
     }
 }

@@ -51,7 +51,7 @@ class Solution {
                 int p2 = i + j + 1;
                 int s = results[p2] + mul;
                 results[p1] += s / 10;
-                results[p2] = s % 10;
+                results[p2] += s % 10;
             }
         }
         StringBuilder sb = new StringBuilder();
@@ -60,7 +60,7 @@ class Solution {
                 sb.append(p);
             }
         }
-        return sb.length() == 0 ? "0" : sb.toString();
+        return sb.toString();
     }
 }
 

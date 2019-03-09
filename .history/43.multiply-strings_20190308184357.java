@@ -46,12 +46,12 @@ class Solution {
         int[] results = new int[m + n];
         for(int i = m - 1; i >= 0; i--) {
             for(int j = n - 1; j >= 0; j--) {
-                int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                int mul = (num1.charAt(i) - 'a') * (num2.charAt(j) - 'a');
                 int p1 = i + j;
                 int p2 = i + j + 1;
-                int s = results[p2] + mul;
-                results[p1] += s / 10;
-                results[p2] = s % 10;
+                mul += results[p2];
+                results[p1] = mul / 10;
+                results[p2] = mul % 10;
             }
         }
         StringBuilder sb = new StringBuilder();
@@ -60,7 +60,7 @@ class Solution {
                 sb.append(p);
             }
         }
-        return sb.length() == 0 ? "0" : sb.toString();
+        return sb.toString();
     }
 }
 
