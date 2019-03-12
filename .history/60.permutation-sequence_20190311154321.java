@@ -50,46 +50,30 @@
  * 
  */
 class Solution {
-    // public String getPermutation(int n, int k) {
-    //     List<Integer> num = new LinkedList<>();
-    //     for(int i = 1; i <= n; i++) {
-    //         num.add(i);
-    //     }
-    //     int[] fact = new int[n];
-    //     fact[0] = 1;
-    //     for(int i = 1; i < n; i++) {
-    //         fact[i] = i * fact[i - 1];
-    //         System.out.println(fact[i]);
-    //     }
-    //     k = k - 1;
-    //     StringBuilder sb = new StringBuilder();
-    //     for(int i = n; i > 0; i--) {
-    //         int idx = k / fact[i - 1];
-    //         k = k % fact[i - 1];
-    //         sb.append(num.get(idx));
-    //         num.remove(idx);
-    //     }
-    //     return sb.toString();
-    // }
     public String getPermutation(int n, int k) {
         List<Integer> num = new LinkedList<>();
         for(int i = 1; i <= n; i++) {
             num.add(i);
         }
-        int[] factor = new int[n];
-        factor[0] = 1;
+        int[] fact = new int[n];
+        fact[0] = 1;
         for(int i = 1; i < n; i++) {
-            factor[i] = i * factor[i - 1];
+            fact[i] = i * fact[i - 1];
+            System.out.println(fact[i]);
         }
         k = k - 1;
         StringBuilder sb = new StringBuilder();
         for(int i = n; i > 0; i--) {
-            int idx = k / factor[i - 1];
-            k = k % factor[i - 1];
+            int idx = k / fact[i - 1];
+            k = k % fact[i - 1];
             sb.append(num.get(idx));
             num.remove(idx);
         }
         return sb.toString();
+    }
+    public String getPermutation(int n, int k) {
+        List<String> num = new ArrayList<>();
+        
     }
 }
 

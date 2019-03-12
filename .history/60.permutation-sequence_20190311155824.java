@@ -83,7 +83,7 @@ class Solution {
         }
         k = k - 1;
         StringBuilder sb = new StringBuilder();
-        for(int i = n; i > 0; i--) {
+        for(int i = n; i >= 0; i--) {
             int idx = k / factor[i - 1];
             k = k % factor[i - 1];
             sb.append(num.get(idx));

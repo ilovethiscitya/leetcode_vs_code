@@ -72,7 +72,7 @@ class Solution {
     //     return sb.toString();
     // }
     public String getPermutation(int n, int k) {
-        List<Integer> num = new LinkedList<>();
+        List<String> num = new ArrayList<>();
         for(int i = 1; i <= n; i++) {
             num.add(i);
         }
@@ -83,7 +83,7 @@ class Solution {
         }
         k = k - 1;
         StringBuilder sb = new StringBuilder();
-        for(int i = n; i > 0; i--) {
+        for(int i = n; i >= 0; i--) {
             int idx = k / factor[i - 1];
             k = k % factor[i - 1];
             sb.append(num.get(idx));

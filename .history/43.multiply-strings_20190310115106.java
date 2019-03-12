@@ -70,7 +70,6 @@ class Solution {
 //    891
 //   81
 //  81  
-
     public String multiply(String num1, String num2) {
         int m = num1.length();
         int n = num2.length();
@@ -82,7 +81,7 @@ class Solution {
                 int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
                 int sum = mul + result[p2];
                 result[p2] = sum % 10;
-                result[p1] += sum / 10;
+                result[p1] = sum / 10;
             }
         }
         StringBuilder sb = new StringBuilder();
