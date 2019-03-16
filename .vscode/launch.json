@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - longestPath",
+            "request": "launch",
+            "mainClass": "longestPath",
+            "projectName": "leetcode_vs_code_d3ba3401"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MinimumStringWindow",
             "request": "launch",
             "mainClass": "MinimumStringWindow",
