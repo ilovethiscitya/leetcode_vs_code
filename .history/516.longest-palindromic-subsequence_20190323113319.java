@@ -51,7 +51,7 @@ class Solution {
         if(start > end) return 0;
         if(start == end) return 1;
         if(s.charAt(start) == s.charAt(end)) {
-            memo[start][end] = dfs(s, start + 1, end - 1, memo) + 2;
+            memo[start][end] = dfs(s, start + 1, end - 1, memo);
         } else {
             memo[start][end] = Math.max(dfs(s, start, end - 1, memo), dfs(s, start + 1, end, memo)); 
         }

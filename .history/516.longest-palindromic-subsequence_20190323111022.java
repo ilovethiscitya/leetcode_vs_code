@@ -42,20 +42,7 @@
  */
 class Solution {
     public int longestPalindromeSubseq(String s) {
-        return dfs(s, 0, s.length() - 1, new Integer[s.length()][s.length()]);
-    }
-    private int dfs(String s, int start, int end, Integer[][] memo) {
-        if(memo[start][end] != null) {
-            return memo[start][end];
-        }
-        if(start > end) return 0;
-        if(start == end) return 1;
-        if(s.charAt(start) == s.charAt(end)) {
-            memo[start][end] = dfs(s, start + 1, end - 1, memo) + 2;
-        } else {
-            memo[start][end] = Math.max(dfs(s, start, end - 1, memo), dfs(s, start + 1, end, memo)); 
-        }
-        return memo[start][end];
+        
     }
 }
 
