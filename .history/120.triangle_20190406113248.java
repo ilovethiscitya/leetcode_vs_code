@@ -42,7 +42,7 @@ class Solution {
     }
     private int dfs(List<List<Integer>> triangle, int row, int col, Integer[][] results) {
         if(row == triangle.size() - 1) {
-            return triangle.get(row).get(col);
+            return results[row][col];
         }
         if(results[row][col] != null) {
             return results[row][col];

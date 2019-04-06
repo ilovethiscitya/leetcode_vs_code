@@ -38,20 +38,7 @@ class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         int size = triangle.size();
         Integer[][] results = new Integer[size][size];
-        return dfs(triangle, 0, 0, results);
-    }
-    private int dfs(List<List<Integer>> triangle, int row, int col, Integer[][] results) {
-        if(row == triangle.size() - 1) {
-            return triangle.get(row).get(col);
-        }
-        if(results[row][col] != null) {
-            return results[row][col];
-        }
-        if(row > triangle.size() || col > row) {
-            return Integer.MAX_VALUE;
-        }
-        results[row][col] = triangle.get(row).get(col) + Math.min(dfs(triangle, row + 1, col, results), dfs(triangle, row + 1, col + 1, results));
-        return results[row][col];
+        return dfs(triangle, 0, 0, results)
     }
 }
 

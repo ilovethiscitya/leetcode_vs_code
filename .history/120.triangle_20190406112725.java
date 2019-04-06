@@ -36,22 +36,14 @@
  */
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
-        int size = triangle.size();
-        Integer[][] results = new Integer[size][size];
-        return dfs(triangle, 0, 0, results);
-    }
-    private int dfs(List<List<Integer>> triangle, int row, int col, Integer[][] results) {
-        if(row == triangle.size() - 1) {
-            return triangle.get(row).get(col);
+        int m = triangle.size();
+        int[] res = new int[m + 1];
+        for(int i = m - 1; i >= 0; i--) {
+            for(int j = 0; j <= i; j++) {
+                res[j] = triangle.get(i).get(j) + Math.min(res[j], res[j + 1]);
+            }
         }
-        if(results[row][col] != null) {
-            return results[row][col];
-        }
-        if(row > triangle.size() || col > row) {
-            return Integer.MAX_VALUE;
-        }
-        results[row][col] = triangle.get(row).get(col) + Math.min(dfs(triangle, row + 1, col, results), dfs(triangle, row + 1, col + 1, results));
-        return results[row][col];
+        return res[0];
     }
 }
 
