@@ -49,29 +49,27 @@ import java.util.Arrays;
  */
 class Solution {
     public int candy(int[] ratings) {
-        if(ratings == null || ratings.length == 0) return 0;
         int[] results = new int[ratings.length];
-        results[0] = 1;
-        for(int i = 1; i < ratings.length; i++) {
-            if(ratings[i] > ratings[i - 1]) {
-                results[i] = results[i - 1] + 1;
-            } else {
-                results[i] = 1;
-            }
-        }
-        for(int i = ratings.length - 2; i >= 0; i--) {
-            if(ratings[i] > ratings[i + 1]) {
-                results[i] = Math.max(results[i], results[i + 1] + 1);
-            }
-        }
+        Arrays.fill(results, 1);
+        boolean flag = true;
         int sum = 0;
-        for(int res : results) {
-            sum += res;
+        while(flag) {
+            flag = false;
+            for(int i = 0; i < ratings.length; i++) {
+                if(i != ratings.length - 1 && ratings[i] > ratings[i + 1] && results[i] < results[i + 1]) {
+                    flag = true;
+                    results[i] = results[i + 1] + 1;
+                }
+                if(i != 0 && ratings[i] > ratings[i - 1] && results[i] < results[i - 1]) {
+                    flag = true;
+                    results[i] = results[i - 1] + 1;
+                }
+            }
+        }
+        for(int score : results) {
+            sum += score;
         }
         return sum;
     }
-    // 1 3 4 5 2
-    // 1 2 3 4 1
-    //  1 2  3  2  1
 }
 

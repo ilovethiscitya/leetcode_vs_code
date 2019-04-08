@@ -61,7 +61,7 @@ class Solution {
         }
         for(int i = ratings.length - 2; i >= 0; i--) {
             if(ratings[i] > ratings[i + 1]) {
-                results[i] = Math.max(results[i], results[i + 1] + 1);
+                results[i] = results[i + 1] + 1;
             }
         }
         int sum = 0;
@@ -70,8 +70,5 @@ class Solution {
         }
         return sum;
     }
-    // 1 3 4 5 2
-    // 1 2 3 4 1
-    //  1 2  3  2  1
 }
 
