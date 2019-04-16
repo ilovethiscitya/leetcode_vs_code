@@ -56,7 +56,7 @@ class Solution {
             hold[i][0] = -prices[0];
             unhold[i][0] = 0;
             for(int j = 1; j < prices.length; j++) {
-                hold[i][j] = Math.max(unhold[i - 1][j - 1] - prices[j], hold[i][j - 1]);
+                hold[i][j] = Math.max(unhold[i - 1][j] - prices[j], hold[i][j - 1]);
                 unhold[i][j] = Math.max(hold[i][j - 1] + prices[j], unhold[i][j - 1]);
             }
         }
@@ -73,21 +73,21 @@ class Solution {
     }
 
 
-    // public int maxProfits(int k, int[] prices) {
-    //     if(k > prices.length / 2) {
-    //         return noLimit(prices);
-    //     }
-    //     int[][] hold = new int[k + 1][prices.length];
-    //     int[][] unhold = new int[k + 1][prices.length];
-    //     for(int i = 1; i <= k; i++) {
-    //         hold[i][0] = -prices[0];
-    //         unhold[i][0] = 0;
-    //         for(int j = 1; j < prices.length; j++) {
-    //             hold[i][j] = Math.max(unhold[i - 1][j] - prices[j], hold[i][j - 1]);
-    //             unhold[i][j] = Math.max(hold[i][j - 1] + prices[j], unhold[i][j - 1]);
-    //         }
-    //     }
-    //     return unhold[k][prices.length - 1];
-    // }
+    public int maxProfits(int k, int[] prices) {
+        if(k > prices.length / 2) {
+            return noLimit(prices);
+        }
+        int[][] hold = new int[k + 1][prices.length];
+        int[][] unhold = new int[k + 1][prices.length];
+        for(int i = 1; i <= k; i++) {
+            hold[i][0] = -prices[0];
+            unhold[i][0] = 0;
+            for(int j = 1; j < prices.length; j++) {
+                hold[i][j] = Math.max(unhold[i - 1][j] - prices[j], hold[i][j - 1]);
+                unhold[i][j] = Math.max(hold[i][j - 1] + prices[j], unhold[i][j - 1]);
+            }
+        }
+        return unhold[k][prices.length - 1];
+    }
 }
 
