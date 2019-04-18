@@ -96,15 +96,7 @@ class Solution {
         if(visitedNode[start]) {
             return false;
         }
-        visitedNode[start] = true;
-        for(int i = 0; i < graph[start]._children.size(); i++) {
-            if(!dfs(graph, graph[start]._children.get(i), visitedGraph, visitedNode, res)) {
-                return false;
-            }
-        }
-        visitedGraph[start] = true;
-        res.add(graph[start]._id);
-        return true;
+        
     }
     class Node {
         int _id;

@@ -46,17 +46,13 @@ class Solution {
         return res;
     }
     private void dfs(int target, int num, int idx, int cur, List<Integer> list, List<List<Integer>> res) {
-        if(target < 0 || idx > num) {
-            return;
-        }
-        
         if(target == 0 && idx == num) {
             res.add(new ArrayList<>(list));
             return;
         }
         for(int i = cur; i <= 9; i++) {
             list.add(i);
-            dfs(target - i, num, idx + 1, i + 1, list, res);
+            dfs(target - i, num, idx + 1, i, list, res);
             list.remove(list.size() - 1);
         }
 

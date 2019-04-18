@@ -56,62 +56,51 @@
  */
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        Node[] graph = buildGraph(numCourses, prerequisites);
-        return walkGraph(graph);
+        Node[] nodes = buildGraph(numCourses, prerequisites);
+        return walkGraph(nodes);
     }
-    private Node[] buildGraph(int numCourses, int[][] pre) {
-        Node[] graph = new Node[numCourses];
-        for(int i = 0; i < numCourses; i++) {
+    private Node[] buildGraph(int n, int[][] matrix) {
+        Node[] graph = new Node[n];
+        for(int i = 0; i < n; i++) {
             graph[i] = new Node(i);
         }
-        for(int[] p : pre) {
-            int start = p[0];
-            int end = p[1];
-            graph[start]._children.add(end);
+        for(int[] edge : matrix) {
+            int parent = edge[1];
+            int child = edge[0];
+            graph[parent]._childId.add(child);
         }
         return graph;
     }
-    private int[] walkGraph(Node[] graph) {
-        List<Integer> res = new ArrayList<>();
-        int idx = 0;
-        int num = graph.length;
-        boolean[] visitedNode = new boolean[num];
-        boolean[] visitedGraph = new boolean[num];
-        for(int i = 0; i < num; i++) {
-            if(!dfs(graph, i, visitedGraph, visitedNode, res)) {
-                return new int[]{};
-            }
+    private int[] walkGraph(Node[] nodes) {
+        int n = nodes.length;
+        LinkedList<int[]> resultList = new LinkedList<>();
+        boolean[] visitedNode = new boolean[n];
+        boolean[] visitedSubGraph = new boolean[n];
+        for(int i = 0; i < n; i++) {
+            dfs(nodes, i, resultList, visitedNode, visitedSubGraph);
         }
-        int size = res.size();
-        int[] result = new int[size];
-        for(int i : res) {
+        int[] result = new int[n];
+        int idx = 0;
+        for(int i : resultList) {
             result[idx++] = i;
         }
         return result;
     }
-    private boolean dfs(Node[] graph, int start, boolean[] visitedGraph, boolean[] visitedNode, List<Integer> res) {
-        if(visitedGraph[start]) {
-            return true;
+    private void dfs(Node[] nodes, int i, LinkedList<int[]> resultList, boolean[] visitedNode, boolean[] visitedSubVisted) {
+        if(visitedSubVisted[i]) return;
+        if(visitedNode[i]) return;
+        visitedNode[i] = true;
+        for(int child : nodes[i]._childId) {
+            dfs(nodes, child, resultList, visitedNode, visitedSubVisted);
         }
-        if(visitedNode[start]) {
-            return false;
-        }
-        visitedNode[start] = true;
-        for(int i = 0; i < graph[start]._children.size(); i++) {
-            if(!dfs(graph, graph[start]._children.get(i), visitedGraph, visitedNode, res)) {
-                return false;
-            }
-        }
-        visitedGraph[start] = true;
-        res.add(graph[start]._id);
-        return true;
+        resultList.add(0, i);
+        visitedSubVisted[i] = true;
     }
     class Node {
         int _id;
-        ArrayList<Integer> _children;
+        ArrayList<Integer> _childId = new ArrayList<>();
         public Node(int id) {
             _id = id;
-            _children = new ArrayList<>();
         }
     }
 }

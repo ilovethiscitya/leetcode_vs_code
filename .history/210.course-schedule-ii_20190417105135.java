@@ -1,4 +1,3 @@
-import org.omg.CosNaming.NameHolder;
 
 /*
  * @lc app=leetcode id=210 lang=java
@@ -57,44 +56,32 @@ import org.omg.CosNaming.NameHolder;
  */
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        Node[] nodes = buildGraph(numCourses, prerequisites);
-        return walkGraph(nodes);
+        Node[] graph = buildGraph(numCourses, prerequisites);
+        return walkGraph(graph);
     }
-    private Node[] buildGraph(int n, int[][] matrix) {
-        Node[] graph = new Node[n];
-        for(int i = 0; i < n; i++) {
+    private Node[] buildGraph(int numCourses, int[][] pre) {
+        Node[] graph = new Node[numCourses];
+        for(int i = 0; i < numCourses; i++) {
             graph[i] = new Node(i);
         }
-        for(int[] edge : matrix) {
-            int parent = edge[1];
-            int child = edge[0];
-            graph[parent]._childId.add(child);
+        for(int[] p : pre) {
+            int start = p[0];
+            int end = p[1];
+            graph[start]._children.add(end);
         }
         return graph;
     }
-    private int[] walkGraph(Node[] nodes) {
-        int n = nodes.length;
-        LinkedList<int[]> resultList = new LinkedList<>();
-        boolean[] visitedNode = new boolean[n];
-        boolean[] visitedSubGraph = new boolean[n];
-        for(int i = 0; i < n; i++) {
-            dfs(nodes, i, resultList, visitedNode, visitedSubGraph);
-        }
-        int[] result = new int[n];
+    private int[] walkGraph(Node[] graph) {
+        List<Integer> res = new ArrayList<>();
         int idx = 0;
-        for(int i : resultList) {
-            result[idx++] = i;
-        }
-        return result;
-    }
-    private void dfs(Node[] nodes, int i, LinkedList<int[]> resultList, boolean[] visitedNode, boolean[] visitedSubVisted) {
-        if(visitedNode[i]) return;
+        dfs(graph, )
     }
     class Node {
         int _id;
-        ArrayList<Integer> _childId = new ArrayList<>();
+        ArrayList<Integer> _children;
         public Node(int id) {
             _id = id;
+            _children = new ArrayList<>();
         }
     }
 }

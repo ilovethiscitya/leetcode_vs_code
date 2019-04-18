@@ -89,7 +89,7 @@ class Solution {
         }
         return result;
     }
-    private boolean dfs(Node[] graph, int start, boolean[] visitedGraph, boolean[] visitedNode, List<Integer> res) {
+    private boolean dfs(Node[] graph, int start, boolean[] visitedGraph, boolean[] visitedNode, ArrayList<Integer> res) {
         if(visitedGraph[start]) {
             return true;
         }
@@ -103,7 +103,7 @@ class Solution {
             }
         }
         visitedGraph[start] = true;
-        res.add(graph[start]._id);
+        res.add(0, graph[start]._id);
         return true;
     }
     class Node {

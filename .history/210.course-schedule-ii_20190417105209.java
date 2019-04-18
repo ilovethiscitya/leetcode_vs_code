@@ -76,35 +76,8 @@ class Solution {
         int idx = 0;
         int num = graph.length;
         boolean[] visitedNode = new boolean[num];
-        boolean[] visitedGraph = new boolean[num];
-        for(int i = 0; i < num; i++) {
-            if(!dfs(graph, i, visitedGraph, visitedNode, res)) {
-                return new int[]{};
-            }
-        }
-        int size = res.size();
-        int[] result = new int[size];
-        for(int i : res) {
-            result[idx++] = i;
-        }
-        return result;
-    }
-    private boolean dfs(Node[] graph, int start, boolean[] visitedGraph, boolean[] visitedNode, List<Integer> res) {
-        if(visitedGraph[start]) {
-            return true;
-        }
-        if(visitedNode[start]) {
-            return false;
-        }
-        visitedNode[start] = true;
-        for(int i = 0; i < graph[start]._children.size(); i++) {
-            if(!dfs(graph, graph[start]._children.get(i), visitedGraph, visitedNode, res)) {
-                return false;
-            }
-        }
-        visitedGraph[start] = true;
-        res.add(graph[start]._id);
-        return true;
+        boolean[] 
+        dfs(graph, )
     }
     class Node {
         int _id;

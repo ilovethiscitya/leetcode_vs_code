@@ -51,45 +51,19 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Node[] graph = new Node[numCourses];
-        buildGraph(graph, prerequisites);
-        boolean[] visited = new boolean[numCourses];
-        boolean[] cycled = new boolean[nunCourses];
-        for(int i = 0; i < numCourses; i++) {
-            if(!dfs(graph, i, visited, cycled)) {
-                return false;
-            }
-        }
-        return true;
+        graph = buildGraph(prerequisites);
+
     }
-    private boolean dfs(Node[] graph, int start, boolean[] visited, boolean[] cycled) {
-        if(visited[start]) return false;
-        if(cycled[start]) return true;
-        visited[start] = true;
-        for(int child : graph[start].children) {
-            if(dfs(graph, child, visited, cycled)) {
-                return false;
-            }
-        }
-        visited[start] = false;
-        cycled[start] = true;
-        return true;
-    }
-    private void buildGraph(Node[] graph, int[][] prerequisites) {
-        
+    private Node buildGraph(int[][] prerequisites) {
         for(int[] pre : prerequisites) {
             int start = pre[0];
             int end = pre[1];
-            if(graph[start] != null) {
-                graph[start].children.add(end);
-            } else {
-                graph[start] = new Node(start);
-                graph[start].children.add(end);
-            }
+            
         }
     }
     class Node {
         int val;
-        ArrayList<Integer> children = new ArrayList<>();
+        ArrayList<Integer> children;
         public Node(int val) {
             this.val = val;
         }

@@ -1,3 +1,4 @@
+
 /*
  * @lc app=leetcode id=210 lang=java
  *
@@ -55,13 +56,19 @@
  */
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        Node[] graph = buildGraph(numCourses, prerequisites);
+        return walkGraph(graph);
+    }
+    private Node[] buildGraph(int numCourses, int[][] pre) {
+        Node[] graph = new int[numCourses];
         
     }
     class Node {
         int _id;
-        ArrayList<Integer> _childId = new ArrayList<>()；
-        public Node(int id) {
+        ArrayList<Integer> _children;
+        public Nodee(int id) {
             _id = id;
+            _children = new ArrayList<>();
         }
     }
 }

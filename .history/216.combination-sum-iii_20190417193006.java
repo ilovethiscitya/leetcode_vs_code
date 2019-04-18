@@ -46,10 +46,6 @@ class Solution {
         return res;
     }
     private void dfs(int target, int num, int idx, int cur, List<Integer> list, List<List<Integer>> res) {
-        if(target < 0 || idx > num) {
-            return;
-        }
-        
         if(target == 0 && idx == num) {
             res.add(new ArrayList<>(list));
             return;

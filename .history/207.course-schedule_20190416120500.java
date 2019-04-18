@@ -52,27 +52,7 @@ class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Node[] graph = new Node[numCourses];
         buildGraph(graph, prerequisites);
-        boolean[] visited = new boolean[numCourses];
-        boolean[] cycled = new boolean[nunCourses];
-        for(int i = 0; i < numCourses; i++) {
-            if(!dfs(graph, i, visited, cycled)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    private boolean dfs(Node[] graph, int start, boolean[] visited, boolean[] cycled) {
-        if(visited[start]) return false;
-        if(cycled[start]) return true;
-        visited[start] = true;
-        for(int child : graph[start].children) {
-            if(dfs(graph, child, visited, cycled)) {
-                return false;
-            }
-        }
-        visited[start] = false;
-        cycled[start] = true;
-        return true;
+
     }
     private void buildGraph(Node[] graph, int[][] prerequisites) {
         

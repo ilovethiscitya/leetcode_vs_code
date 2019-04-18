@@ -1,4 +1,3 @@
-import org.omg.CosNaming.NameHolder;
 
 /*
  * @lc app=leetcode id=210 lang=java
@@ -57,51 +56,15 @@ import org.omg.CosNaming.NameHolder;
  */
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        Node[] nodes = buildGraph(numCourses, prerequisites);
-        return walkGraph(nodes);
-    }
-    private Node[] buildGraph(int n, int[][] matrix) {
-        Node[] graph = new Node[n];
-        for(int i = 0; i < n; i++) {
-            graph[i] = new Node(i);
-        }
-        for(int[] edge : matrix) {
-            int parent = edge[1];
-            int child = edge[0];
-            graph[parent]._childId.add(child);
-        }
-        return graph;
-    }
-    private int[] walkGraph(Node[] nodes) {
-        int n = nodes.length;
-        LinkedList<int[]> resultList = new LinkedList<>();
-        boolean[] visitedNode = new boolean[n];
-        boolean[] visitedSubGraph = new boolean[n];
-        for(int i = 0; i < n; i++) {
-            dfs(nodes, i, resultList, visitedNode, visitedSubGraph);
-        }
-        int[] result = new int[n];
-        int idx = 0;
-        for(int i : resultList) {
-            result[idx++] = i;
-        }
-        return result;
-    }
-    private void dfs(Node[] nodes, int i, LinkedList<int[]> resultList, boolean[] visitedNode, boolean[] visitedSubVisted) {
-        if(visitedSubVisted[i]) return;
-        if(visitedNode[i]) return;
-        visitedNode[i] = true;
-        for(int child : nodes[i]._childId) {
-            dfs(nodes, child, resultList, visitedNode, visitedSubVisted);
-        }
-        resultList.add(0, i);
-        visitedSubVisted[i] = true;
+        Node[] graph = buildGraph(numCourses, prerequisites);
+        walkGraph(graph)
     }
     class Node {
         int _id;
-        ArrayList<Integer> _childId = new ArrayList<>();
-        public Node(int id) {
+        ArrayList<Integer> _children;
+        public Nodee(int id) {
             _id = id;
+            _children = new ArrayList<>();
         }
     }
 }

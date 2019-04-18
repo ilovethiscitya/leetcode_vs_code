@@ -103,7 +103,7 @@ class Solution {
             }
         }
         visitedGraph[start] = true;
-        res.add(graph[start]._id);
+        res.add(0, graph[start]._id);
         return true;
     }
     class Node {

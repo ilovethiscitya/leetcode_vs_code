@@ -1,3 +1,4 @@
+
 /*
  * @lc app=leetcode id=210 lang=java
  *
@@ -55,13 +56,58 @@
  */
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        
+        Node[] graph = buildGraph(numCourses, prerequisites);
+        return walkGraph(graph);
+    }
+    private Node[] buildGraph(int numCourses, int[][] pre) {
+        Node[] graph = new Node[numCourses];
+        for(int i = 0; i < numCourses; i++) {
+            graph[i] = new Node(i);
+        }
+        for(int[] p : pre) {
+            int start = p[0];
+            int end = p[1];
+            graph[start]._children.add(end);
+        }
+        return graph;
+    }
+    private int[] walkGraph(Node[] graph) {
+        List<Integer> res = new ArrayList<>();
+        int idx = 0;
+        int num = graph.length;
+        boolean[] visitedNode = new boolean[num];
+        boolean[] visitedGraph = new boolean[num];
+        for(int i = 0; i < num; i++) {
+            if(!dfs(graph, i, visitedGraph, visitedNode, res)) {
+                return new int[]{};
+            }
+        }
+        int size = res.size();
+        int[] result = new int[size];
+        for(int i : res) {
+            result[idx++] = i;
+        }
+        return result;
+    }
+    private boolean dfs(Node[] graph, int start, boolean[] visitedGraph, boolean[] visitedNode, ArrayList<Integer> res) {
+        if(visitedGraph[start]) {
+            return true;
+        }
+        if(visitedNode[start]) {
+            return false;
+        }
+        visitedNode[start] = true;
+        for(int i = 0; i < graph[start]._children.size(); i++) {
+            
+        }
+
     }
     class Node {
         int _id;
-        ArrayList<Integer> _childId = new ArrayList<>()；
+        ArrayList<Integer> _children;
         public Node(int id) {
             _id = id;
+            _children = new ArrayList<>();
         }
     }
 }
