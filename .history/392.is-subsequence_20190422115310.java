@@ -55,7 +55,7 @@ class Solution {
         // a a a c
         int sLen = shorts.length();
         int lLen = longs.length();
-        int[][] dp = new int[sLen + 1][lLen + 1];
+        int[][] dp = new int[lLen + 1][sLen + 1];
         for(int i = sLen - 1; i >= 0; i--) {
             for(int j = lLen - 1; j>= 0; j--) {
                 if(shorts.charAt(i) == longs.charAt(j)) {

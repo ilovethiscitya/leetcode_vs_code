@@ -49,40 +49,14 @@ class Solution {
     public List<String> findWords(char[][] board, String[] words) {
         TrieNode root = buildTrie(words);
         List<String> res = new ArrayList<>();
-        boolean[][] used = new boolean[board.length][board[0].length];
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board[0].length; j++) {
-                dfs(root, i, j, board, used, res);
+                dfs(root, i, j, board, res);
             }
         }
         return res;
         
 
-    }
-    private void dfs(TrieNode root, int i, int j, char[][] board, boolean[][] used, List<String> res) {
-        char cur = board[i][j];
-        if(used[i][j] || root.children[cur - 'a'] == null) {
-            return;
-        }
-        used[i][j] = true;
-        root = root.children[cur - 'a'];
-        if(root.word != null) {
-            res.add(root.word);
-            root.word = null;
-        }
-        if(i - 1 >= 0) {
-            dfs(root, i - 1, j, board, used, res);
-        }
-        if(i + 1 < board.length) {
-            dfs(root, i + 1, j, board, used, res);
-        }
-        if(j - 1 >= 0) {
-            dfs(root, i, j - 1, board, used, res);
-        }
-        if(j + 1 < board[0].length) {
-            dfs(root, i, j + 1, board, used, res);
-        }
-        used[i][j] = false;
     }
     private TrieNode buildTrie(String[] words) {
         TrieNode root = new TrieNode();
@@ -98,9 +72,8 @@ class Solution {
             }
             p.word = cur;
         }
-        return root;
     }
-
+    
     class TrieNode {
         String word;
         TrieNode[] children = new TrieNode[26];

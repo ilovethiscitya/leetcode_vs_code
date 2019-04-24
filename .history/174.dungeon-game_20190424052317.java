@@ -90,7 +90,7 @@ class Solution {
                 } else if(i == m - 1) {
                     results[j] = d[i][j] - results[j + 1] <  0 ? results[j + 1] - d[i][j] : 1;
                 } else if(j == n - 1) {
-                    results[j] = d[i][j] - results[j] < 0 ? results[j] - d[i][j] : 1;
+                    results[j] = d[i][j] - results[j + 1] < 0 ? results[j + 1] - d[i][j] : 1;
                 } else {
                     int min = Math.min(results[j], results[j + 1]);
                     results[j] = d[i][j] - min < 0 ? min - d[i][j] : 1;

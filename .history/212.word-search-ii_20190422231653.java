@@ -69,6 +69,7 @@ class Solution {
         if(root.word != null) {
             res.add(root.word);
             root.word = null;
+            return;
         }
         if(i - 1 >= 0) {
             dfs(root, i - 1, j, board, used, res);
@@ -98,7 +99,6 @@ class Solution {
             }
             p.word = cur;
         }
-        return root;
     }
 
     class TrieNode {

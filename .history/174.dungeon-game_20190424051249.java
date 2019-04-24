@@ -80,24 +80,8 @@
  */
 class Solution {
     public int calculateMinimumHP(int[][] d) {
-        int m = d.length;
-        int n = d[0].length;
-        int[] results = new int[n + 1];
-        for(int i = m - 1; i >= 0; i--) {
-            for(int j = n - 1; j >= 0; j--) {
-                if(i == m - 1 && j == n - 1) {
-                    results[j] = d[i][j] < 0 ? 1 - d[i][j] : 1;
-                } else if(i == m - 1) {
-                    results[j] = d[i][j] - results[j + 1] <  0 ? results[j + 1] - d[i][j] : 1;
-                } else if(j == n - 1) {
-                    results[j] = d[i][j] - results[j] < 0 ? results[j] - d[i][j] : 1;
-                } else {
-                    int min = Math.min(results[j], results[j + 1]);
-                    results[j] = d[i][j] - min < 0 ? min - d[i][j] : 1;
-                }
-            }
-        }
-        return results[0];
+        
+ 
     }
 }
 

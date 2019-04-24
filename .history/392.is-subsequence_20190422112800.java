@@ -50,22 +50,20 @@
  * test cases.
  */
 class Solution {
-    public boolean isSubsequence(String shorts, String longs) {
+    public boolean isSubsequence(String s, String t) {
         // a a c
         // a a a c
-        int sLen = shorts.length();
-        int lLen = longs.length();
-        int[][] dp = new int[sLen + 1][lLen + 1];
-        for(int i = sLen - 1; i >= 0; i--) {
-            for(int j = lLen - 1; j>= 0; j--) {
-                if(shorts.charAt(i) == longs.charAt(j)) {
-                    dp[i][j] = dp[i + 1][j + 1] + 1;
-                } else {
-                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+        int sLen = s.length();
+        int tLen = t.length();
+        boolean[][] dp = new boolean[sLen + 1][tLen + 1];
+        for(int i = 0; i < sLen; i++) {
+            for(int j = 0; j < tLen; j++) {
+                if(s.charAt(i) == t.charAt(j)) {
+                    dp[i][j] = 
                 }
             }
         }
-        return dp[0][0] == sLen;
+        return dp[0][0];
     }
 }
 

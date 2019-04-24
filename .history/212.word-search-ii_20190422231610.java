@@ -69,20 +69,21 @@ class Solution {
         if(root.word != null) {
             res.add(root.word);
             root.word = null;
+            return;
         }
         if(i - 1 >= 0) {
-            dfs(root, i - 1, j, board, used, res);
+            dfs(root, i - 1, j, root, used, res);
         }
         if(i + 1 < board.length) {
-            dfs(root, i + 1, j, board, used, res);
+            dfs(root, i + 1, j, root, used, res);
         }
         if(j - 1 >= 0) {
-            dfs(root, i, j - 1, board, used, res);
+            dfs(root, i, j - 1, root, used, res);
         }
         if(j + 1 < board[0].length) {
-            dfs(root, i, j + 1, board, used, res);
+            dfs(root, i, j + 1, root, used, res);
         }
-        used[i][j] = false;
+        uesd[i][j] = false;
     }
     private TrieNode buildTrie(String[] words) {
         TrieNode root = new TrieNode();
@@ -98,7 +99,6 @@ class Solution {
             }
             p.word = cur;
         }
-        return root;
     }
 
     class TrieNode {
