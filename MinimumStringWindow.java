@@ -1,6 +1,3 @@
-public class MinimumStringWindow {
-    public String miniWindow(String s1, String s2) {
-        int[] charS2Mapping = new int[256];
         int[] charS1Mapping = new int[256];
         int size = s2.length();
         for(int i = 0; i < s2.length(); i++)
